@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsualización - SIMPLIMED</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="/" class="logo" aria-label="Volver al inicio" title="Inicio" style="text-decoration: none;">
+                    <h1 class="logo">SIMPLIMED</span></h1>
+                </a>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href=/performance>¿Cómo Funciona?</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    
+    <main class="preview-container">
+      <div class="preview-wrapper">
+          <!-- Panel de previsualización (izquierda) -->
+          <div class="preview-panel">
+              <!-- Contenedor donde se cargarán los canvas para cada página del PDF -->
+              <div id="pdf-canvas-container"></div>
+          </div>
+  
+          <!-- Panel de acciones (derecha) -->
+          <div class="actions-panel">
+              <button id="generate-btn">Generar Informe Simplificado</button>
+              <div id="output-container" style="display: none;">
+                  <div id="output-content"></div> <!-- Cambio de <p> a <div> -->
+                  <div id="loading-indicator" style="display: none;">
+                      <span class="loader"></span>
+                  </div>
+                  <p id="loading-message">Esperando la generación del informe...</p>
+              </div>            
+          </div>
+          
+      </div>
+  </main>
+  
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="mailto:lmolino@ujaen.es">lmolino@ujaen.es</a></li>
+        <li><a href="https://www.linkedin.com/in/nlp-sinai/" target="_blank" rel="noopener noreferrer">LinkedIn SINAI</a></li>
+        <li><a href="https://sinai.ujaen.es" target="_blank" rel="noopener noreferrer">Web SINAI</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Enlaces Legales</h3>
+      <ul>
+        <li><a href="/privacidad">Política de Privacidad</a></li>
+        <li><a href="/terminos">Términos y Condiciones</a></li>
+        <li><a href="/aviso-legal">Aviso Legal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Información</h3>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/performance">¿Cómo Funciona?</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-logos">
+      <a href="https://eps.ujaen.es/" target="_blank" rel="noopener noreferrer">
+        <img src="/public/images/eps.jpeg" alt="Escuela Politécnica Superior" />
+      </a>
+      <a href="https://www.ujaen.es" target="_blank" rel="noopener noreferrer">
+        <img src="/public/images/uja.png" alt="Universidad de Jaén" />
+      </a>
+      <a href="https://sinai.ujaen.es" target="_blank" rel="noopener noreferrer">
+        <img src="/public/images/sinai.png" alt="Grupo de investigación SINAI" />
+      </a>
+  </div>
+
+</footer>
+
+<script src="/public/js/preview.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown/lib/markdown.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</body>
+</html>
