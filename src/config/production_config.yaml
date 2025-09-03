@@ -1,0 +1,19 @@
+paths:
+  input:
+    input_data: data/ProductionData
+    extractor_abreviaciones: SINAI/extractor_abreviaciones
+    extractor_medicamentos: SINAI/extractor_medicamentos
+    prompt_finetunning_medicamentos: src/utils/prompt_finetunning_medicamentos.txt
+    prompt_finetunnig_abreviaciones: src/utils/prompt_finetunnig_terminos.txt
+    abreviaciones: src/dataset/abreviaciones.csv
+    medicamentos: src/dataset/medicamentos.json
+  output:
+    results_name: data/OutputData
+
+model:
+  name: llama
+  type: 8b # gpt-3.5-turbo-1106
+  api_key: "your_api_key_here" # only needed if using an OpenAI model
+  policy: seccionado # Can be "seccionado" or "completo"
+  output_format: string  # Can be "string" or "JSON"
+
