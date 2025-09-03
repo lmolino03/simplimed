@@ -1,0 +1,106 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALENO-IA: Simplificación de Informes Médicos</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<header class="header">
+    <div class="header-container">
+        <div class="logo-container">
+            <a href="/" class="logo" aria-label="Volver al inicio" title="Inicio" style="text-decoration: none;">
+                <h1 class="logo">GALENO<span>-IA</span></h1>
+            </a>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href=/performance>¿Cómo Funciona?</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="como-funciona" class="how-it-works">
+    <div class="container">
+        <h2>¿Cómo Funciona GALENO-IA?</h2>
+        <p class="intro">
+            GALENO-IA combina inteligencia artificial avanzada, técnicas de *prompting* diseñadas por expertos y bases de datos validadas para simplificar informes médicos en lenguaje claro y accesible.
+        </p>
+
+        <h3>La simplificación de informes médicos mediante inferencia con LLM (modelos de lenguaje grande) es un proceso complejo y multietapa que involucra técnicas avanzadas de procesamiento del lenguaje natural y adaptación al público objetivo. A continuación, explico de manera detallada las estrategias y técnicas de *prompting* y su implementación técnica:</h3>
+
+        <div class="steps">
+            <div class="step">
+                <h3><span class="step-number">1</span> Estrategias de *Prompting* Específico para Cada Sección</h3>
+                <p>
+                    Cada informe médico contiene múltiples secciones (como "Motivo de Ingreso", "Antecedentes", "Enfermedad Actual", "Plan de Actuación", etc.), y para cada una de estas secciones, se utiliza un *prompt* específico, diseñado para guiar al LLM en la tarea de simplificar el contenido de manera coherente y precisa. Los *prompts* se desarrollan a partir de ejemplos reales y la experiencia de expertos en el área, permitiendo que el modelo entienda el tipo de información que debe extraer, simplificar y presentar.
+                </p>
+                <p>
+                    Por ejemplo, para la sección "Plan de Actuación", el modelo no solo simplifica el contenido, sino que también lo adapta a un lenguaje accesible, manteniendo la integridad del contenido clínico. Esto se logra mediante *prompts* que proporcionan instrucciones explícitas al modelo, como: "Genera una versión simplificada y comprensible de esta sección, manteniendo la precisión de la información médica".
+                </p>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">2</span> Técnicas de Simplificación de Lenguaje Técnico</h3>
+                <p>
+                    La simplificación de lenguaje técnico es un componente clave del proceso. Los términos médicos complejos, acrónimos y jergas clínicas deben ser transformados en un lenguaje claro y accesible para un público con limitados conocimientos médicos.
+                </p>
+                <p>
+                    El modelo se entrenará para identificar y reemplazar o reestructurar los términos complejos, por ejemplo, transformando "disnea" a "falta de aire" o explicando "furosemida" como "medicación diurética para eliminar el exceso de líquidos". Este proceso de "descomplicación" del lenguaje se basa en técnicas de desambiguación y reformulación, empleando patrones lingüísticos y semánticos que aseguran que el significado técnico se conserve pero se exprese de forma más clara.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">3</span> Enriquecimiento del Prompt con Conocimiento Adicional</h3>
+                <p>
+                    Una de las características más avanzadas de este proceso es la integración de conocimiento especializado sobre acrónimos y términos médicos complejos, que se introduce dinámicamente en los *prompts* del modelo.
+                </p>
+                <p>
+                    Para ello, se utiliza un LLM adicional entrenado específicamente para la tarea de buscar y procesar acrónimos. Este LLM examina cada sección del informe y genera una lista de acrónimos y términos técnicos relevantes, que luego son añadidos al *prompt* para asegurar que el modelo tenga acceso a un conjunto de conocimientos adicionales. Este enriquecimiento se realiza mediante la inclusión de una base de datos de acrónimos revisada por expertos médicos, lo que garantiza que el modelo sepa cómo tratar esos términos de manera precisa y accesible.
+                </p>
+                <p>
+                    Por ejemplo, si se encuentra el acrónimo "IAM" (Infarto Agudo de Miocardio), el modelo sabrá que debe expandirlo como "Infarto Agudo de Miocardio (IAM)", asegurando que el público pueda entender el término sin perder precisión médica.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">4</span> Adaptación del *Prompt* al Público Objetivo</h3>
+                <p>
+                    La última capa del proceso de *prompting* es la adaptación al público objetivo, en este caso personas mayores con niveles de comprensión médica limitados. Esto se logra aplicando técnicas de ajuste semántico y de tono, lo que permite que el contenido sea formal y respetuoso, pero con un estilo lingüístico sencillo.
+                </p>
+                <p>
+                    Los *prompts* se diseñan para especificar instrucciones sobre el tipo de lenguaje a utilizar, como: "Utiliza un lenguaje sencillo y directo", o "Evita el uso de términos técnicos complejos y mantén las frases cortas y claras". Este enfoque permite que el LLM genere respuestas que son comprensibles, pero no simplificadas en exceso, asegurando que se mantenga la precisión clínica.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">5</span> Implementación Técnica: El Proceso de Inferencia</h3>
+                <p>
+                    El proceso de inferencia con el modelo se realiza mediante un flujo que involucra varias fases técnicas:
+                </p>
+                <ul>
+                    <li><strong>Carga del Modelo:</strong> El modelo LLM utilizado para la simplificación, como LLaMA, se carga con parámetros específicos para el uso en inferencia de 4 bits (*load_in_4bit*), lo que optimiza el uso de memoria y permite un rendimiento más rápido, crucial cuando se trabaja con grandes volúmenes de datos.</li>
+                    <li><strong>Generación del *Prompt*:</strong> Para cada informe, se genera dinámicamente un *prompt* que incluye tanto el texto original del informe como el conocimiento adicional de acrónimos y terminología médica. Este *prompt* se pasa al modelo para su procesamiento.</li>
+                    <li><strong>Generación de la Respuesta:</strong> El modelo genera una respuesta que simplifica la sección del informe de acuerdo con las instrucciones dadas en el *prompt*. El modelo produce una salida con un texto estructurado que mantiene la precisión, pero usa un lenguaje accesible.</li>
+                    <li><strong>Revisión y Almacenamiento:</strong> La salida generada se revisa y, si es necesario, se ajusta antes de ser almacenada en un archivo de salida, como un archivo Markdown o HTML, listo para ser presentado al paciente o utilizado por los médicos.</li>
+                </ul>
+            </div>
+
+            <h3>Nombre del Proceso: <strong>MedSimPrompt</strong></h3>
+            <p>
+                Este enfoque integral se ha denominado <strong>MedSimPrompt</strong>, una técnica que utiliza inferencia con LLMs optimizados, enriquecimiento dinámico de conocimiento y un *prompting* adaptado al contexto y público objetivo. MedSimPrompt asegura que los informes médicos sean comprensibles para pacientes con limitados conocimientos médicos, manteniendo la integridad de la información clínica.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2024 GALENO-IA. Todos los derechos reservados.</p>
+        <p>Desarrollado por <a href="https://es.linkedin.com/in/lucasmolpin" target="_blank">Lucas Molino Piñar</a>.</p>
+    </div>
+</footer>
+
