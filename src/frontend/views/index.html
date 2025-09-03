@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SIMPLIMED: Simplificación de Informes Médicos</title>
+    <link rel="stylesheet" href="/public/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+
+<header class="header">
+    <div class="header-container">
+        <div class="logo-container">
+            <a href="/" class="logo" aria-label="Volver al inicio" title="Inicio" style="text-decoration: none;">
+                <h1 class="logo">SIMPLIMED</span></h1>
+            </a>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href=/performance>¿Cómo Funciona?</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1><span class="heart-icon" aria-hidden="true">❤️</span> Simplificación de Informes de Cardiología</h1>
+    <p class="description">Sube tu informe de alta cardiológica y obtén una versión simplificada en segundos.</p>
+    
+    <div class="upload-area" role="button" tabindex="0" onclick="document.getElementById('file-input').click();" title="Haz clic para subir tu informe">
+        <p>Arrastra y suelta tu informe aquí o haz clic para seleccionarlo</p>
+        <input type="file" id="file-input" accept=".pdf" onchange="handleFileUpload(this)" title="Selecciona un archivo PDF" hidden />
+    </div>
+
+    <p class="status-message" id="status-message"></p>
+    <p class="loading-message" id="loading-message" style="display: none;">
+        <span class="loader" aria-label="Cargando"></span>
+    </p>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="mailto:lmolino@ujaen.es">lmolino@ujaen.es</a></li>
+          <li><a href="https://www.linkedin.com/in/nlp-sinai/" target="_blank" rel="noopener noreferrer">LinkedIn SINAI</a></li>
+          <li><a href="https://sinai.ujaen.es" target="_blank" rel="noopener noreferrer">Web SINAI</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h3>Enlaces Legales</h3>
+        <ul>
+          <li><a href="/privacidad">Política de Privacidad</a></li>
+          <li><a href="/terminos">Términos y Condiciones</a></li>
+          <li><a href="/aviso-legal">Aviso Legal</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h3>Información</h3>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/performance">¿Cómo Funciona?</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-logos">
+        <a href="https://eps.ujaen.es/" target="_blank" rel="noopener noreferrer">
+          <img src="/public/images/eps.jpeg" alt="Escuela Politécnica Superior" />
+        </a>
+        <a href="https://www.ujaen.es" target="_blank" rel="noopener noreferrer">
+          <img src="/public/images/uja.png" alt="Universidad de Jaén" />
+        </a>
+        <a href="https://sinai.ujaen.es" target="_blank" rel="noopener noreferrer">
+          <img src="/public/images/sinai.png" alt="Grupo de investigación SINAI" />
+        </a>
+    </div>
+
+</footer>
+  
+  
+  
+
+<script src="/public/js/script.js"></script>
+</body>
+</html>
