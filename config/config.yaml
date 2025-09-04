@@ -1,0 +1,18 @@
+paths:
+  input:
+    input_data: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset
+    evol: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Hoja_de_Evolucion
+    alta: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Informes_de_Alta
+    anamnesis: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Hojas_de_Anamnesis
+  output:
+    preprocessed_ingresos: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/output_dataset/preproccessed/Ingresos
+    output_data: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/output_dataset
+    results_name: completo
+
+model:
+  name: GPT
+  type: gpt-4o # gpt-3.5-turbo-1106
+  api_key: 
+  policy: completo
+  output_format: JSON  # Can be "string" or "JSON"
+

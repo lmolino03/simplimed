@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Alta</title>
+</head>
+<body>
+    <h1>Informe de Alta</h1>
+    <ul>
+        {% if isinstancedict(data) %}
+            {% for key, value in data.items() %}
+                <li>
+                    <strong style="font-size: 1.2em;">{{ key }}</strong>
+                    <br>
+                    {% if isinstancedict(value) %}
+                        <ul>
+                            {% for sub_key, sub_value in value.items() %}
+                                <li>
+                                    <strong>{{ sub_key }}</strong>
+                                    <br>
+                                    {% if isinstancedict(sub_value) %}
+                                        <ul>
+                                            {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                                <li>
+                                                    <strong>{{ sub_sub_key }}</strong>
+                                                    <br>
+                                                    {% if isinstancedict(sub_sub_value) %}
+                                                        <ul>
+                                                            {% for sub_sub_sub_key, sub_sub_sub_value in sub_sub_value.items() %}
+                                                                <li>
+                                                                    <strong>{{ sub_sub_sub_key }}</strong>
+                                                                    <br>
+                                                                    {{ sub_sub_sub_value }}
+                                                                    <br><br>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% elif isinstancelist(sub_sub_value) %}
+                                                        <ul>
+                                                            {% for item in sub_sub_value %}
+                                                                <li>
+                                                                    {% if isinstancedict(item) %}
+                                                                        <ul>
+                                                                            {% for item_key, item_value in item.items() %}
+                                                                                <li>
+                                                                                    <strong>{{ item_key }}</strong>
+                                                                                    <br>
+                                                                                    {{ item_value }}
+                                                                                    <br><br>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% else %}
+                                                                        {{ item }}
+                                                                    {% endif %}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% else %}
+                                                        {{ sub_sub_value }}
+                                                        <br><br>
+                                                    {% endif %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% elif isinstancelist(sub_value) %}
+                                        <ul>
+                                            {% for item in sub_value %}
+                                                <li>
+                                                    {% if isinstancedict(item) %}
+                                                        <ul>
+                                                            {% for item_key, item_value in item.items() %}
+                                                                <li>
+                                                                    <strong>{{ item_key }}</strong>
+                                                                    <br>
+                                                                    {{ item_value }}
+                                                                    <br><br>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% else %}
+                                                        {{ item }}
+                                                    {% endif %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        {{ sub_value }}
+                                        <br><br>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% elif isinstancelist(value) %}
+                        <ul>
+                            {% for item in value %}
+                                <li>
+                                    {% if isinstancedict(item) %}
+                                        <ul>
+                                            {% for item_key, item_value in item.items() %}
+                                                <li>
+                                                    <strong>{{ item_key }}</strong>
+                                                    <br>
+                                                    {{ item_value }}
+                                                    <br><br>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        {{ item }}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        {{ value }}
+                        <br><br>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>
+                {{ data }}
+                <br><br>
+            </li>
+        {% endif %}
+    </ul>
+</body>
+</html>

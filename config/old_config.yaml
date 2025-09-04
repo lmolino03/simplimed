@@ -1,0 +1,13 @@
+env:
+  evol: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Hoja_de_Evolucion
+  alta: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Informes_de_Alta
+  anamnesis: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/input_dataset/Anonimizados_PDF_Hojas_de_Anamnesis
+  ingresos: /home/lucas/Escritorio/ICARO/CODE_cardio/dataset/output_dataset/preproccessed/Ingresos
+
+
+model:
+  name: GPT
+  key: 
+  type: gpt-3.5-turbo-1106
+  policy: seccionado
+
