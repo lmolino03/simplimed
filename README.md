@@ -1,276 +1,377 @@
-# 📄 SimpliMED - Simplificación Automática de Informes Médicos
+# 🏥 SimpliMED - Subproyecto de Simplificación de Informes Médicos
 
-## 📋 Descripción
+![GALENO-IA](https://img.shields.io/badge/Proyecto-GALENO--IA-blue)
+![SimpliMED](https://img.shields.io/badge/Subproyecto-SimpliMED-green)
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![License](https://img.shields.io/badge/license-Academic%20Use-orange)
+![Language](https://img.shields.io/badge/language-Python%20%7C%20Node.js-yellow)
 
-**SimpliMED** es un sistema innovador orientado a la **simplificación automática de informes médicos de alta hospitalaria en el ámbito de la cardiología**. Su objetivo principal es **traducir el lenguaje clínico técnico a un nivel comprensible para pacientes y usuarios no especializados**, preservando la precisión médica y facilitando la comunicación médico-paciente.
+## 📋 Descripción del Proyecto
 
-El proyecto combina técnicas avanzadas de **Procesamiento del Lenguaje Natural (PLN)**, **modelos de lenguaje de última generación (LLMs)** y una **plataforma web interactiva** desarrollada como parte de un Trabajo Fin de Grado (TFG).
+**SimpliMED** es el **subproyecto de simplificación de informes médicos** desarrollado como parte del **Trabajo de Fin de Grado (TFG) de Lucas Molino Piñat**, enmarcado dentro del proyecto de investigación **GALENO-IA** de la Universidad de Jaén.
 
-> ⚠️ **Nota Importante**: Este proyecto tiene un carácter **estrictamente académico y demostrativo**. No está destinado para uso clínico real.
+### 🏛️ Contexto: Proyecto GALENO-IA
+
+**GALENO-IA** (*Generación Automática de Lenguaje Claro para Obtención de Informes de Alta*) es un proyecto de investigación concedido a la **Universidad de Jaén** y al **Hospital Universitario de Jaén**, dirigido por las investigadoras principales **María Teresa Martín Valdivia** y **Manuel Carlos Díaz Galiano**.
+
+#### Objetivo General de GALENO-IA
+Desarrollar un sistema completo de **generación y simplificación automática de informes de alta hospitalaria en cardiología**, que incluye:
+1. **Generación automática** de informes de alta a partir de anamnesis y hojas de evolución
+2. **Simplificación automática** de informes médicos para pacientes (SimpliMED)
+
+### 🎯 Enfoque de SimpliMED
+
+Este TFG se centra específicamente en el **segundo componente**: la **simplificación automática de informes de alta médicos**, desarrollando un sistema que traduce el lenguaje clínico técnico a un formato comprensible para pacientes y usuarios no especializados, preservando la precisión médica.
+
+> ⚠️ **Nota Importante**: SimpliMED es un prototipo de investigación con carácter **estrictamente académico y demostrativo**. No está destinado para uso clínico real.
+
+## 🔬 Equipos de Investigación
+
+### **Grupo SINAI (Universidad de Jaén)**
+- **Especialización**: Procesamiento de Lenguaje Natural y Aprendizaje Automático
+- **Experiencia**: Más de 25 años en investigación
+- **Infraestructura**: CEATIC con clusters de alto rendimiento y GPUs A100/V100
+
+### **Grupo ReCaH (Hospital Universitario de Jaén)**
+- **Especialización**: Cardiología clínica e investigación médica
+- **Colaboración**: Validación médica y supervisión clínica
+
+### **Investigadores Participantes**
+- **Lucas Molino Piñat**: Desarrollador principal del subproyecto SimpliMED
+- **Equipo multidisciplinar**: Informáticos, médicos cardiólogos y personal técnico
 
 ## 🎯 Objetivos
 
 ### Objetivo Principal
-Evaluar la viabilidad de simplificar informes clínicos mediante PLN, explorando cómo la división por secciones, el manejo de abreviaciones médicas y la explicación de tratamientos farmacológicos mejoran la claridad de los textos médicos.
+Desarrollar y validar un sistema de **simplificación automática de informes de alta médicos** que traduzca el lenguaje clínico especializado a un formato accesible para pacientes, manteniendo la precisión médica y mejorando la comunicación médico-paciente.
 
-### Objetivos Específicos
-- **Análisis de estrategias** de simplificación textual en el dominio clínico
-- **Evaluación de modelos de lenguaje** ligeros y avanzados para simplificación médica
-- **Desarrollo de técnicas de prompting** específicas por sección del informe
-- **Implementación de plataforma web** como demostrador funcional
-- **Construcción de diccionario** de abreviaciones clínicas personalizado
-- **Validación experimental** mediante evaluación cualitativa y cuantitativa
+### Objetivos Específicos del Subproyecto SimpliMED
+1. **Implementar técnicas de PLN** para simplificación textual en el dominio clínico
+2. **Desarrollar modelos especializados** para detección de abreviaciones y medicamentos
+3. **Crear sistema modular** de procesamiento por secciones médicas
+4. **Validar la efectividad** de la simplificación con enfoque human-in-the-loop
+5. **Construir plataforma demostrativa** para visualización y comparación de resultados
+6. **Integrar diccionarios especializados** de terminología médica
 
-## 🧪 Hipótesis Planteadas
+## 🧪 Hipótesis de Investigación
 
-1. **Hipótesis 1**: La división del informe por secciones clínicas mejora la calidad de la simplificación
-2. **Hipótesis 2**: La expansión correcta de abreviaciones médicas facilita la comprensión de los informes  
-3. **Hipótesis 3**: La explicación del tratamiento y de los medicamentos mejora la accesibilidad del contenido
+### Hipótesis Principal de GALENO-IA
+La implementación de LLMs y técnicas de simplificación **reducirá significativamente el tiempo de redacción** de informes y permitirá generar **versiones claras y comprensibles para los pacientes**.
+
+### Hipótesis Específicas de SimpliMED
+1. **División por secciones**: La segmentación del informe por secciones clínicas mejora la calidad de la simplificación
+2. **Expansión de abreviaciones**: La correcta expansión de siglas médicas facilita la comprensión
+3. **Explicación farmacológica**: La descripción clara de tratamientos mejora la accesibilidad del contenido
 
 ## 🏗️ Arquitectura del Sistema
 
-SimpliMED está organizado en módulos integrados que trabajan de forma cohesiva:
+SimpliMED implementa una arquitectura modular que procesa informes médicos de forma especializada:
 
 ```mermaid
 graph TD
-    A[Documento PDF] --> B[Preprocesamiento]
-    B --> C[División en Secciones]
-    C --> D[Módulo de Abreviaciones]
-    C --> E[Módulo de Medicamentos]
-    D --> F[Motor de Simplificación]
+    A[Informe de Alta Original] --> B[Preprocesamiento]
+    B --> C[División por Secciones Médicas]
+    C --> D[Extractor de Abreviaciones]
+    C --> E[Extractor de Medicamentos]
+    D --> F[Motor de Simplificación LLAMA]
     E --> F
-    F --> G[Plataforma Web]
-    G --> H[Visualización Comparativa]
-    G --> I[Exportación PDF/JSON]
+    F --> G[Ensamblaje de Resultados]
+    G --> H[Informe Simplificado]
+    H --> I[Plataforma Web Demostrativa]
+    I --> J[Visualización Comparativa]
+    I --> K[Exportación PDF/JSON]
 ```
 
-### Componentes Principales
+### Módulos Principales
 
-1. **Preprocesamiento**: Normalización y preparación del texto de entrada
-2. **División en secciones clínicas**: Segmentación especializada (antecedentes, diagnóstico, tratamiento, etc.)
-3. **Módulo de abreviaciones**: Detección y expansión usando diccionario especializado
-4. **Módulo de medicamentos**: Identificación de fármacos y generación de explicaciones terapéuticas
-5. **Motor de simplificación**: Utiliza LLMs (LLAMA 3.2 8B Instruct) para reescribir en lenguaje claro
-6. **Plataforma web**: Interfaz interactiva para demostración y visualización
+1. **Preprocesador**: Normalización y estructuración del texto médico
+2. **Segmentador**: División automática por secciones clínicas especializadas
+3. **Extractor de Abreviaciones**: Modelo fine-tuned para detección y expansión de siglas médicas
+4. **Extractor de Medicamentos**: Identificación de fármacos y generación de explicaciones terapéuticas
+5. **Simplificador LLAMA**: Motor principal usando LLAMA 3.2 con prompts especializados
+6. **Ensamblador**: Integración coherente de todas las simplificaciones
+7. **Interfaz Web**: Plataforma demostrativa para visualización y comparación
 
-## 🚀 Características
+## 🚀 Características Técnicas
 
 ### Funcionalidades Principales
-- **Procesamiento de PDFs**: Carga y análisis de documentos médicos
-- **Extracción Inteligente**: Identificación automática de medicamentos y abreviaciones
-- **Simplificación Contextual**: Generación de resúmenes comprensibles por secciones
-- **Visualización Comparativa**: Comparación lado a lado entre original y simplificado
-- **Diccionario Integrado**: Consulta de abreviaciones médicas contextualizadas
-- **Exportación Múltiple**: Resultados en PDF y JSON
+- **Procesamiento de Informes de Alta**: Análisis específico de documentos cardiológicos
+- **Simplificación Contextual**: Adaptación por secciones médicas (motivo, antecedentes, tratamiento, etc.)
+- **Detección Inteligente**: Identificación automática de abreviaciones y medicamentos
+- **Explicación Terapéutica**: Generación de descripciones comprensibles de tratamientos
+- **Comparación Visual**: Interface para contrastar original vs simplificado
+- **Validación Médica**: Preparado para revisión por especialistas
 
-### Tipos de Documentos Soportados
-- Anamnesis
-- Hojas de Evolución
-- Informes de Alta
-- Informes de Ingreso
+### Tipos de Secciones Procesadas
+- **Motivo de Consulta**: Simplificación de la razón de hospitalización
+- **Antecedentes**: Clarificación del historial médico relevante
+- **Exploración Física**: Traducción de hallazgos clínicos
+- **Tratamiento**: Explicación comprensible de medicamentos y terapias
+- **Juicio Clínico**: Simplificación del diagnóstico y pronóstico
+- **Revisiones**: Indicaciones para seguimiento posterior
 
 ## 🛠️ Tecnologías
 
-### Backend
-- **Python 3.8+**: Procesamiento de IA y lógica de negocio
-- **Node.js + Express**: Servidor web y API REST
-- **PyTorch**: Framework de machine learning
-- **Transformers**: Modelos de lenguaje natural
+### Backend (Core del Sistema)
+- **Python 3.8+**: Procesamiento de IA y lógica médica especializada
+- **PyTorch**: Framework para modelos de deep learning
+- **Transformers (Hugging Face)**: Biblioteca para modelos de lenguaje
+- **LLAMA 3.2 8B Instruct**: Modelo principal de simplificación
+- **Modelos Fine-tuned**: Extractores especializados entrenados en terminología médica
+
+### Servidor y API
+- **Node.js + Express**: API REST para comunicación frontend-backend
+- **Sistema de archivos**: Gestión de documentos y resultados temporales
 
 ### Frontend
-- **HTML/CSS/JavaScript**: Interfaz de usuario responsiva
-- **Bootstrap**: Framework de diseño
-- **Interfaz intuitiva**: Optimizada para usabilidad
+- **HTML/CSS/JavaScript**: Interfaz web responsiva y accesible
+- **Bootstrap**: Framework de diseño médico profesional
+- **Visualización comparativa**: Herramientas de contraste textual
 
-### Modelos de IA
-- **LLAMA 3.2 8B Instruct**: Modelo principal de simplificación
-- **Modelos especializados**: Entrenados para terminología médica española
-- **Pipeline modular**: Procesamiento por tareas específicas
+### Datos y Configuración
+- **YAML + Python**: Sistema flexible de configuración
+- **CSV**: Diccionario de abreviaciones médicas contextualizadas
+- **JSON**: Base de datos de medicamentos con explicaciones terapéuticas
 
 ## 📦 Estructura del Proyecto
 
 ```
 SimpliMED/
-├── data/                           # Datos de entrada y salida
-│   ├── H_OutputData/              # Datos de salida (histórico)
-│   ├── H_ProductionData/          # Datos de producción (histórico)
-│   ├── OutputData/                # Datos de salida actuales
-│   └── ProductionData/            # Datos de producción actuales
-├── server/                        # Servidor Node.js
-│   ├── public/                    # Archivos estáticos
-│   │   ├── css/                   # Hojas de estilo
-│   │   ├── js/                    # Scripts del frontend
-│   │   ├── images/                # Recursos gráficos
-│   │   └── views/                 # Páginas HTML
-│   ├── tempUploads/               # Archivos temporales
-│   ├── server.js                  # Servidor principal
-│   └── package.json               # Dependencias Node.js
-├── src/                           # Código fuente Python
-│   ├── config/                    # Configuraciones del sistema
-│   ├── data_structures/           # Estructuras de datos médicas
-│   ├── models/                    # Modelos de IA entrenados
-│   ├── preprocess/                # Preprocesamiento de datos
-│   ├── tasks/                     # Tareas de procesamiento
-│   ├── utils/                     # Utilidades y helpers
-│   └── production.py              # Script principal de producción
-├── docs/                          # Documentación del proyecto
-├── requirements.txt               # Dependencias Python
-└── README.md                      # Este archivo
+├── README.md                      # Documentación principal
+└── src/                           # Código fuente
+    ├── backend/                   # Lógica del servidor y procesamiento
+    │   ├── api.js                 # API REST Node.js
+    │   ├── core/                  # Núcleo del sistema SimpliMED
+    │   │   ├── builder_production.py     # Constructor del pipeline
+    │   │   ├── production.py             # Script principal de producción
+    │   │   ├── config/                   # Configuraciones del sistema
+    │   │   │   ├── base_config.py        # Configuración base
+    │   │   │   ├── production_config.py  # Configuración de producción
+    │   │   │   └── *.yaml                # Archivos de configuración YAML
+    │   │   ├── dataset/                  # Recursos de datos médicos
+    │   │   │   ├── abreviaciones.csv     # Diccionario de abreviaciones médicas
+    │   │   │   └── medicamentos.json     # Base de datos de medicamentos
+    │   │   ├── data_structures/          # Estructuras de documentos médicos
+    │   │   │   ├── Anamnesis.py          # Estructura para anamnesis
+    │   │   │   ├── Hoja_Evolucion.py     # Estructura para evolución
+    │   │   │   ├── Informe_Alta.py       # Estructura para informes de alta
+    │   │   │   └── Ingreso.py            # Estructura para ingresos
+    │   │   ├── models/                   # Modelos de IA especializados
+    │   │   │   ├── extractor_abreviaciones/  # Modelo para abreviaciones médicas
+    │   │   │   └── extractor_medicamentos/   # Modelo para medicamentos
+    │   │   ├── preprocess/               # Preprocesamiento especializado
+    │   │   │   ├── processor_alta.py     # Procesador de informes de alta
+    │   │   │   ├── processor_anamnesis.py # Procesador de anamnesis
+    │   │   │   └── processor_evol.py     # Procesador de evoluciones
+    │   │   ├── tasks/                    # Tareas de procesamiento
+    │   │   │   ├── assemble.py           # Ensamblaje de resultados
+    │   │   │   └── simplification/       # Módulo de simplificación
+    │   │   │       └── llama/            # Implementación con LLAMA
+    │   │   │           ├── completo.py       # Simplificación completa
+    │   │   │           ├── seccionado.py     # Simplificación por secciones
+    │   │   │           └── prompts/          # Plantillas de prompts médicos
+    │   │   │               ├── prompts_completo/     # Prompts integrales
+    │   │   │               └── prompts_seccionado/   # Prompts por sección
+    │   │   └── utils/                    # Utilidades especializadas
+    │   │       ├── buscador_abreviaciones.py    # Buscador de abreviaciones
+    │   │       ├── extractor_medicamentos.py   # Extractor de medicamentos
+    │   │       └── utils.py                     # Utilidades generales
+    │   ├── package.json               # Dependencias Node.js
+    │   ├── requirements.txt           # Dependencias Python
+    │   └── run_backend.sh             # Script de ejecución
+    ├── frontend/                      # Interfaz de usuario demostrativa
+    │   ├── css/                       # Estilos de la plataforma médica
+    │   ├── images/                    # Logos institucionales (UJA, SINAI, EPS)
+    │   ├── js/                        # Scripts de interacción
+    │   └── views/                     # Páginas HTML de la demo
+    └── preprocess/                    # Preprocesamiento adicional
+        ├── processor_alta.py          # Procesamiento específico de altas
+        ├── processor_anamnesis.py     # Procesamiento de anamnesis
+        └── processor_evol.py          # Procesamiento de evoluciones
 ```
 
 ## 🔧 Instalación
 
 ### Prerrequisitos
 
-- **Node.js** (v14 o superior)
-- **Python** (v3.8 o superior)
-- **npm** o **yarn**
-- **Git**
+- **Python 3.8+** con capacidades de GPU (recomendado)
+- **Node.js 14+** para el servidor web
+- **Git** para clonar el repositorio
+- **Entorno virtual Python** (recomendado)
 
 ### Instalación Paso a Paso
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/SimpliMED.git
-   cd SimpliMED
+   git clone https://github.com/lmolino03/simplimed.git
+   cd simplimed
    ```
 
-2. **Configurar el entorno Python**
+2. **Configurar el entorno Python (Backend Core)**
    ```bash
-   # Crear entorno virtual (recomendado)
-   python -m venv venv
-   source venv/bin/activate  # En Windows: venv\Scripts\activate
+   # Crear entorno virtual especializado
+   python -m venv venv_simplimed
+   source venv_simplimed/bin/activate  # En Windows: venv_simplimed\Scripts\activate
    
-   # Instalar dependencias Python
-   cd src
+   # Instalar dependencias del core
+   cd src/backend/core
    pip install -r requirements.txt
    ```
 
-3. **Configurar el servidor Node.js**
+3. **Configurar el servidor API**
    ```bash
-   cd ../server
+   # Navegar al backend
+   cd ../
    npm install
    ```
 
-4. **Verificar configuraciones**
+4. **Verificar configuración médica**
    ```bash
-   # Verificar configuraciones en src/config/
-   # Asegurar que los modelos están en src/models/
+   # Verificar datasets médicos
+   ls core/dataset/
+   # abreviaciones.csv  medicamentos.json
+   
+   # Verificar modelos entrenados
+   ls core/models/
+   # extractor_abreviaciones/  extractor_medicamentos/
    ```
 
-## 🚀 Uso
+## 🚀 Uso del Sistema
 
-### Iniciar la Aplicación
+### Iniciar SimpliMED
 
 ```bash
-# Terminal 1: Iniciar servidor Node.js
-cd server
-node server.js
+# Opción 1: Script automatizado
+cd src/backend
+./run_backend.sh
 
-# La aplicación estará disponible en http://localhost:3000
+# Opción 2: Ejecución manual
+node api.js
+
+# Acceso a la plataforma: http://localhost:3000
 ```
 
-### API Endpoints
+### API Endpoints Disponibles
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/` | GET | Página principal |
-| `/upload` | POST | Subir documentos PDF |
-| `/performance` | GET | Página de rendimiento |
-| `/preview` | GET | Vista previa de resultados |
+| Endpoint | Método | Descripción | Uso |
+|----------|--------|-------------|-----|
+| `/` | GET | Página principal de SimpliMED | Interface principal |
+| `/upload` | POST | Subida de informes médicos | Carga de documentos |
+| `/performance` | GET | Métricas de simplificación | Análisis de rendimiento |
+| `/preview` | GET | Vista previa de resultados | Comparación de textos |
 
-### Guía de Uso Web
+### Flujo de Trabajo
 
-1. **📤 Subir documento**: Selecciona un archivo PDF médico desde la interfaz
-2. **⚙️ Procesar**: El sistema extraerá automáticamente información relevante
-3. **🔍 Revisar resultados**: Visualiza medicamentos, abreviaciones expandidas y texto simplificado
-4. **📊 Comparar**: Ve la comparación lado a lado entre original y simplificado
-5. **💾 Descargar**: Obtén los resultados en formato PDF o JSON
+1. **📤 Cargar Informe**: Subir informe de alta médico (PDF/texto)
+2. **🔍 Análisis Automático**: El sistema procesa y segmenta el documento
+3. **🧠 Simplificación IA**: LLAMA procesa cada sección con prompts especializados
+4. **💊 Enriquecimiento**: Expansión de abreviaciones y explicación de medicamentos
+5. **📊 Comparación**: Visualización lado a lado (original vs simplificado)
+6. **✅ Validación**: Revisión de resultados para ajustes
+7. **💾 Exportación**: Descarga en PDF o JSON estructurado
 
-## 📊 Evaluación y Resultados
+## 📊 Validación y Resultados
 
 ### Metodología de Evaluación
 
-- **Evaluación Cualitativa**: Revisión por cardiólogos expertos
-- **Evaluación Cuantitativa**: Métricas de detección y expansión
-- **Validación Experimental**: Subtareas especializadas
-- **Ejemplos Ilustrativos**: Casos de uso reales anonimizados
+#### **Evaluación Cualitativa**
+- **Revisión médica**: Cardiólogos del Hospital Universitario de Jaén
+- **Criterios**: Precisión médica, claridad, comprensibilidad
+- **Enfoque human-in-the-loop**: Supervisión médica constante
 
-### Resultados Obtenidos
+#### **Evaluación Cuantitativa**
+- **Métricas de detección**: Precisión en abreviaciones y medicamentos
+- **Análisis por secciones**: Efectividad de la segmentación médica
+- **Comparación de enfoques**: Simplificación completa vs seccionada
 
-Los resultados fueron **prometedores**, confirmando el potencial de la metodología desarrollada:
-- Mejora significativa en la comprensión de informes médicos
-- Validación exitosa de las hipótesis planteadas
-- Demostración de viabilidad técnica del enfoque
+### Resultados Preliminares
 
-## 📌 Principales Contribuciones
+Los resultados del subproyecto SimpliMED han mostrado **prometedores avances**:
+- ✅ **Validación de hipótesis**: Las tres hipótesis planteadas muestran resultados positivos
+- ✅ **Mejora en comprensión**: Incremento significativo en la accesibilidad de informes
+- ✅ **Precisión médica**: Mantenimiento de la información clínica esencial
+- ✅ **Viabilidad técnica**: Demostración del potencial de la metodología desarrollada
 
-1. **Prototipo Funcional** para simplificación clínica automática
-2. **Diccionario Contextualizado** de abreviaciones médicas especializadas
-3. **Pipeline Modular** innovador (secciones, abreviaciones, medicamentos)
-4. **Corpus Real Anonimizado** de cardiología para investigación
-5. **Modelos Especializados** entrenados para el dominio médico español
-6. **Plataforma Web Interactiva** como demostrador académico
-7. **Validación Experimental** de hipótesis sobre simplificación clínica
+> **Nota**: Los resultados son preliminares y corresponden a la fase de prototipado académico del TFG.
+
+## 🎯 Contribuciones del TFG
+
+### Contribuciones Técnicas
+1. **Sistema modular de simplificación** médica especializada
+2. **Modelos fine-tuned** para terminología médica española
+3. **Diccionario contextualizado** de abreviaciones cardiológicas
+4. **Pipeline de procesamiento** por secciones médicas especializadas
+5. **Prompts especializados** para cada tipo de contenido médico
+6. **Plataforma demostrativa** para validación y comparación
+
+### Contribuciones Metodológicas
+1. **Validación experimental** de técnicas de simplificación médica
+2. **Enfoque por secciones** vs simplificación integral
+3. **Integración de conocimiento médico** en modelos de lenguaje
+4. **Metodología de evaluación** para simplificación clínica
+
+## 🔬 Beneficios Esperados (Proyecto GALENO-IA)
+
+### Impacto Clínico
+- **Reducción del tiempo de redacción** de informes en al menos 20%
+- **Mejora de la comprensión** de pacientes en un 50%
+- **Mayor disponibilidad médica** para tareas asistenciales directas
+
+### Impacto Social
+- **Pacientes más informados** y partícipes de su salud
+- **Comunicación médico-paciente** más efectiva
+- **Accesibilidad sanitaria** mejorada para todos los niveles educativos
+
+### Impacto Científico
+- **Avance en IA médica** aplicada al español
+- **Metodologías reproducibles** para otros dominios médicos
+- **Contribución al PLN médico** en lenguas romances
 
 ## ⚠️ Limitaciones y Consideraciones
 
 ### Limitaciones Técnicas
-- **Uso académico exclusivamente**: No apto para uso clínico real
-- **Normativas**: No cumple estándares sanitarios (HL7, FHIR)
-- **Dependencias**: Requiere recursos locales para algunas funciones
-- **Idioma**: Optimizado para español médico
+- **Prototipo académico**: No apto para uso clínico real
+- **Dominio específico**: Optimizado para cardiología
+- **Idioma**: Entrenado específicamente para español médico
+- **Supervisión requerida**: Necesita validación médica constante
 
 ### Consideraciones Éticas
-- Datos anonimizados y uso responsable
-- Transparencia en las limitaciones del sistema
-- Enfoque en la mejora de la comunicación médico-paciente
+- **Privacidad**: Datos anonimizados y uso responsable
+- **Transparencia**: Limitaciones claramente establecidas
+- **Supervisión médica**: Siempre bajo revisión de especialistas
+- **Uso académico**: Exclusivamente para investigación y educación
 
-## 🚀 Futuro del Proyecto
+## 🚀 Futuro del Subproyecto
 
-### Desarrollos Planificados
-- **Adaptación Clínica**: Cumplimiento de estándares de interoperabilidad y privacidad
-- **Interfaz Avanzada**: Edición y validación interactiva por expertos
-- **Validación Extendida**: Mayor número de informes y especialistas
-- **Sistema de Apoyo Real**: Herramienta para profesionales y pacientes
+### Desarrollos Inmediatos
+- **Validación extendida** con más casos clínicos
+- **Métricas cuantitativas** más robustas
+- **Interfaz de edición** para revisión médica
+- **Integración completa** con el sistema de generación de GALENO-IA
 
-### Escalabilidad
-- Extensión a otras especialidades médicas
-- Integración con sistemas hospitalarios existentes
-- Mejoras en precisión y cobertura terminológica
+### Escalabilidad a Largo Plazo
+- **Extensión a otras especialidades** médicas
+- **Adaptación a normativas** sanitarias (HL7, FHIR)
+- **Sistema de producción** para entornos clínicos reales
+- **Integración hospitalaria** con flujos de trabajo existentes
 
-## 🌍 Impacto Social y ODS
+## 🌍 Impacto en los ODS
 
-SimpliMED contribuye directamente a los **Objetivos de Desarrollo Sostenible**:
+SimpliMED, como parte de GALENO-IA, contribuye a los **Objetivos de Desarrollo Sostenible**:
 
-- **🏥 ODS 3** (Salud y Bienestar): Mejora la alfabetización en salud
-- **🎓 ODS 4** (Educación de Calidad): Promueve educación en salud accesible
-- **⚖️ ODS 10** (Reducción de Desigualdades): Facilita comprensión a usuarios con barreras
-- **🏛️ ODS 16** (Instituciones Sólidas): Fomenta transparencia sanitaria
-- **🤝 ODS 17** (Alianzas): Colaboración interdisciplinar
+- **🏥 ODS 3** (Salud y Bienestar): Mejora del acceso a información sanitaria comprensible
+- **🎓 ODS 4** (Educación de Calidad): Alfabetización en salud para todos los ciudadanos
+- **⚖️ ODS 10** (Reducción de Desigualdades): Accesibilidad independiente del nivel educativo
+- **🏛️ ODS 16** (Instituciones Sólidas): Transparencia en la información sanitaria pública
+- **🤝 ODS 17** (Alianzas): Colaboración universidad-hospital-sociedad
 
-## 📄 Licencia
 
-Este proyecto se distribuye bajo licencia académica. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 👥 Contribuciones
-
-Este proyecto fue desarrollado como Trabajo Fin de Grado. Para contribuciones académicas o colaboraciones, contacta a través de los canales oficiales de la institución.
-
-## 📞 Contacto y Soporte
-
-Para consultas académicas o técnicas relacionadas con SimpliMED, puedes:
-- Abrir un issue en este repositorio
-- Contactar a través de la institución académica correspondiente
-
-## 🙏 Agradecimientos
-
-Agradecimiento especial a:
-- Profesores y tutores del proyecto
-- Cardiólogos expertos que participaron en la validación
-- Comunidad académica y de investigación en PLN médico
 
 ---
 
-**SimpliMED** representa un avance significativo en la aplicación de la inteligencia artificial para mejorar la accesibilidad y comprensión de la información médica, sentando las bases para futuras aplicaciones en comunicación médico-paciente y accesibilidad sanitaria.
+**SimpliMED** representa una contribución significativa al proyecto GALENO-IA, demostrando el potencial de la inteligencia artificial para **mejorar la comunicación médico-paciente** y la **accesibilidad de la información sanitaria**. Como subproyecto del TFG de Lucas Molino Piñat, sienta las bases técnicas para futuras aplicaciones clínicas en el marco de la investigación colaborativa universidad-hospital.
 
+![GALENO-IA](https://img.shields.io/badge/Proyecto-GALENO--IA-blue)
+![UJA](https://img.shields.io/badge/Universidad-Ja%C3%A9n-red)
+![Hospital](https://img.shields.io/badge/Hospital-Universitario%20Ja%C3%A9n-green)
+![TFG](https://img.shields.io/badge/TFG-Lucas%20Molino-yellow)
